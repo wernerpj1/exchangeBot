@@ -23,6 +23,7 @@ class BotData:
         order = []
         connect = getattr(ccxt, self.exchange)
         for coin in coins:
+            print(coin)
             orders_coin = connect().fetch_order_book(coin, limit=10)
             orders_coin = json.loads(json.dumps(orders_coin), object_hook=lambda d: SimpleNamespace(**d))
             orderBook.append(orders_coin)
@@ -58,13 +59,13 @@ class Oportunity:
         orderBid = [ordersBids[max_index].bids.price, ordersBids[max_index].bids.qtity]
         buyIn = self.exchangeAsk
         coin = ordersAsks[max_index].name
+        date = datetime.datetime.now()
         oportunity = {
-            'allOportunities': arrayOportunity,
             'oportunity': opo,
             'orderAsk': orderAsk,
             'orderBid': orderBid,
             'buyIn': buyIn,
             'coin': coin,
-            'date': datetime.datetime.now()
+            'date': f'{date.day}/{date.month}/{date.year} -- {date.hour}:{date.minute}:{date.second}'
         }
         return oportunity

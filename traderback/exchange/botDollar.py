@@ -91,13 +91,13 @@ class OportunityDollar:
         orderBid = [ordersBids[max_index].bids.price, ordersBids[max_index].bids.qtity]
         buyIn = self.exchangeAsk
         coin = ordersAsks[max_index].name
+        date = datetime.datetime.now()
         oportunity = {
-            'allOportunities': arrayOportunity,
             'oportunity': opo,
             'orderAsk': orderAsk,
             'orderBid': orderBid,
             'buyIn': buyIn,
             'coin': coin,
-            'date': datetime.datetime.now()
+            'date': f'{date.day}/{date.month}/{date.year} -- {date.hour}:{date.minute}:{date.second}'
         }
         return oportunity
